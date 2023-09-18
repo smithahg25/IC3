@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form with Modal Inside Card</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+    <style>
+        body {
+            background-color: #efcfde;
+        }
+
+        .custom-card {
+            background-color:rgba(30, 52, 67, 0.879); 
+            color: #fffffffa; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card custom-card"> 
+            <div class="card-header">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="card-body">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Thank you for your submission.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            setTimeout(function () {
+                confirmationModal.show();
+                contactForm.reset();
+            }, 1000); 
+        });
+    </script>
+</body>
+</html>
